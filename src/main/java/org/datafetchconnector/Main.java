@@ -24,6 +24,15 @@ public class Main {
         // in org.datafetchconnector package
         final ResourceConfig rc = new ResourceConfig().packages("org.datafetchconnector");
 
+
+
+        try {
+            new Connection().setUp();
+            ReadPropertyFile.setProps();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         // create and start a new instance of grizzly http server
         // exposing the Jersey application at BASE_URI
         return GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);
@@ -36,6 +45,7 @@ public class Main {
      */
     public static void main(String[] args) throws IOException {
         final HttpServer server = startServer();
+
         System.out.println(String.format("Jersey app started with WADL available at "
                 + "%sapplication.wadl\nHit enter to stop it...", BASE_URI));
         System.in.read();
