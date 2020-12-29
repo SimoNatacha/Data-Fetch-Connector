@@ -68,6 +68,12 @@
             <version>1.2.17</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.12.0</version>
+        </dependency>
 
         <!-- devkit jar with dependencies-->
         <dependency>
@@ -76,10 +82,30 @@
             <classifier>jar-with-dependencies</classifier>
             <version> 6.0.7 </version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.codehaus.jettison/jettison -->
         <dependency>
-            <groupId>com.sun.jersey</groupId>
-            <artifactId>jersey-client</artifactId>
-            <version>1.8</version>
+            <groupId>org.codehaus.jettison</groupId>
+            <artifactId>jettison</artifactId>
+            <version>1.4.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.16</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.3.1</version>
+        </dependency>
+
+        <!--  Gson: Java to Json conversion -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.2.2</version>
+            <scope>compile</scope>
         </dependency>
         <!-- oauth jar with dependencies-->
         <dependency>
@@ -93,6 +119,12 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.22</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.vladmihalcea/hibernate-types-52 -->
+        <dependency>
+            <groupId>com.vladmihalcea</groupId>
+            <artifactId>hibernate-types-52</artifactId>
+            <version>2.10.0</version>
+        </dependency>
 
 
         <dependency>
@@ -100,13 +132,16 @@
             <artifactId>hibernate-core</artifactId>
             <version>5.4.10.Final</version>
         </dependency>
-        <!-- uncomment this to get JSON support:
+        <!-- uncomment this to get JSON support: -->
          <dependency>
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-json-binding</artifactId>
         </dependency>
-        -->
         <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>5.1.0.Final</version>
+        </dependency>        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>

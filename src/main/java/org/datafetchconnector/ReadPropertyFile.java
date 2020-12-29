@@ -1,75 +1,64 @@
 package org.datafetchconnector;
-
 import com.intuit.oauth2.client.OAuth2PlatformClient;
 import com.intuit.oauth2.config.OAuth2Config;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.Properties;
 
 public class ReadPropertyFile {
     private static InputStream input;
+    private static OutputStream out;
     private static Properties prop;
 
-    OAuth2PlatformClient client;
     OAuth2Config oauth2Config;
-    public static String getPropertyValue(String propertyName) {
+    OAuth2PlatformClient client;
 
-        try {
-            input = new FileInputStream("src/main/resources/application.properties");
-            prop = new Properties();
-            prop.load(input);
+    public OAuth2PlatformClient getOAuth2PlatformClient() {
 
-            return prop.getProperty(propertyName);
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        } finally {
-            if (input != null) {
-                try {
-                    input.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-return "";
-    }
-
-    public static void setProps() {
-        try {
-            input = new FileInputStream("src/main/resources/application.properties");
-            prop = new Properties();
-            prop.load(input);
-
-            String OAuth2AppClientId = prop.getProperty("clientID");
-            System.out.println(OAuth2AppClientId);
-
-            String OAuth2AppClientSecret = prop.getProperty("clientSecret");
-            System.out.println(OAuth2AppClientSecret);
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        } finally {
-            if (input != null) {
-                try {
-                    input.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-
-    public OAuth2PlatformClient getOAuth2PlatformClient()  {
 
         return client;
     }
 
-    public OAuth2Config getOAuth2Config()  {
+    public OAuth2Config getOAuth2Config() {
+
         return oauth2Config;
+    }
+
+
+    public static String getProperty(String property) {
+        try {
+            input = new FileInputStream("src/main/resources/application.properties");
+            prop = new Properties();
+            prop.load(input);
+
+            return prop.getProperty(property);
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    public static void setProperty(String property, String value) {
+        try {
+
+            input = new FileInputStream("src/main/resources/application.properties");
+            prop = new Properties();
+            prop.load(input);
+            input.close();
+
+            out = new FileOutputStream("src/main/resources/application.properties");
+            prop.setProperty(property, value);
+
+            prop.store(out, null);
+            out.close();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 

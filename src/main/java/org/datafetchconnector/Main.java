@@ -1,5 +1,7 @@
 package org.datafetchconnector;
 
+import com.intuit.oauth2.exception.InvalidRequestException;
+import org.datafetchconnector.controller.QBOController;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -28,8 +30,7 @@ public class Main {
 
         try {
             new Connection().setUp();
-            ReadPropertyFile.setProps();
-
+            QBOController.queryData(1);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -43,12 +44,14 @@ public class Main {
      * @param args
      * @throws IOException
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InvalidRequestException {
         final HttpServer server = startServer();
 
         System.out.println(String.format("Jersey app started with WADL available at "
                 + "%sapplication.wadl\nHit enter to stop it...", BASE_URI));
+
         System.in.read();
+
         server.stop();
     }
 }

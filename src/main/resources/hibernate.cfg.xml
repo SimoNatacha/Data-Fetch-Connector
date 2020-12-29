@@ -3,22 +3,33 @@
         "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 
-    <hibernate-configuration>
-        <session-factory>
-            <!-- Database connection settings -->
-            <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-            <property name="connection.url">jdbc:mysql://localhost:3306/hibernate_test?serverTimezone=UTC</property>
-            <property name="connection.username">simo</property>
-            <property name="connection.password">natacha</property>
+<hibernate-configuration>
+    <session-factory>
+        <!-- Database connection settings -->
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/Data?serverTimezone=UTC</property>
+        <property name="connection.username">simo</property>
+        <property name="connection.password">natacha</property>
 
-            <!-- SQL dialect -->
-            <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
-            <property name="hbm2ddl.auto">update</property>
+        <!-- SQL dialect -->
+        <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
+        <property name="hbm2ddl.auto">update</property>
 
-            <!-- Validate the database schema on startup -->
-<!--            <property name="hbm2ddl.auto">validate</property>-->
+        <!-- Validate the database schema on startup -->
+        <!--            <property name="hbm2ddl.auto">validate</property>-->
 
-            <!-- Names the annotated entity class -->
-            <mapping class="org.datafetchconnector.User"/>
-        </session-factory>
-    </hibernate-configuration>
+        <!-- Names the annotated entity class -->
+        <mapping class="org.datafetchconnector.entities.User"/>
+        <mapping class="org.datafetchconnector.entities.Account"/>
+        <mapping class="org.datafetchconnector.entities.Budget"/>
+        <mapping class="org.datafetchconnector.entities.Bill"/>
+        <mapping class="org.datafetchconnector.entities.CreditMemo"/>
+        <mapping class="org.datafetchconnector.entities.Customer"/>
+        <mapping class="org.datafetchconnector.entities.Employee"/>
+        <mapping class="org.datafetchconnector.entities.Invoice"/>
+        <mapping class="org.datafetchconnector.entities.Payment"/>
+        <mapping class="org.datafetchconnector.entities.Vendor"/>
+        <mapping class="org.datafetchconnector.entities.VendorCredit"/>
+
+    </session-factory>
+</hibernate-configuration>
