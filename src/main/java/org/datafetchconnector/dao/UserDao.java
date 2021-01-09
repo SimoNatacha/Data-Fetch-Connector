@@ -56,9 +56,7 @@ public class UserDao {
 
                 //prepare OAuth2Platform client
                 OAuth2PlatformClient client  = new OAuth2PlatformClient(oauth2Config);
-                System.out.println("before bearerTokenResponse");
                 BearerTokenResponse bearerTokenResponse = client.retrieveBearerTokens(code, Constants.redirectUri);
-                System.out.println("after bearerTokenResponse");
                 user.setRealmId(realmid);
                 user.setCode(code);
                 user.setConnected_date();
