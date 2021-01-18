@@ -7,101 +7,87 @@ import javax.lang.model.type.ReferenceType;
 import javax.persistence.*;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
-@XmlRootElement
+
 @Entity
 @Table(name = "employee")
 public class Employee {
 
-    @EmbeddedId
-    private CompositeKey compositeKey;
-
-    @Column(name = "id", insertable = false, updatable = false)
+    @Id
+    @Column(name = "id")
     private Integer id;
 
+    @Column(name = "DisplayName")
+    private String DisplayName;
 
-    @MapsId("user_id")
-    @ManyToOne()
-    private User user;
+    @Column(name = "SyncToken")
+    private String SyncToken;
 
-
-    private String displayName;
-
-    private String syncToken;
-
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Object primaryAddr;
+    @Column(name = "PrimaryAddr")
+    private PhysicalAddress PrimaryAddr;
 
     @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Object primaryEmailAddr;
+    @Column(name = "primaryEmailAddr",columnDefinition = "json")
+    private EmailAddress PrimaryEmailAddr;
+
+    @Column(name = "Title")
+    private String Title;
+
+    @Column(name = "BillableTime")
+    private Boolean BillableTime;
+
+    @Column(name = "GivenName")
+    private String GivenName;
+
+    @Column(name = "BirthDate")
+    private Date BirthDate;
+
+    @Column(name = "ReleasedDate")
+    private Date ReleasedDate;
+    @Column(name = "Gender")
+    private String Gender;
+
+    @Column(name = "HiredDate")
+    private Date HiredDate;
+
+    @Column(name = "MiddleName")
+    private String MiddleName;
+
+    @Column(name = "SSN")
+    private String SSN;
+
+    @Column(name = "BillRate")
+    private Long BillRate;
+
+    @Column(name = "Organization")
+    private Boolean Organization;
+
+    @Column(name = "Suffix")
+    private String Suffix;
+
+    @Column(name = "FamilyName")
+    private String FamilyName;
+
+    @Column(name = "PrintOnCheckName")
+    private String PrintOnCheckName;
+
+    @Column(name = "EmployeeNumber")
+    private String EmployeeNumber;
+
+    @Column(name = "V4IDPseudonym")
+    private String V4IDPseudonym;
 
 
-    private String title;
-
-
-    private Boolean billableTime;
-
-
-    private String givenName;
-
-    private Date birthDate;
-
-
-    private Date releasedDate;
-
-    private String gender;
-
-
-    private Date hiredDate;
-
-
-    private String middleName;
-    private String ssn;
-
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Object primaryPhone;
-
-    private boolean active;
-
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Object metaData;
-
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Object mobile;
-
-    private double billRate;
-
-
-    private Boolean organization;
-
-    private String suffix;
-
-
-    private String familyName;
-
-
-    private String printOnCheckName;
-
-
-    private String employeeNumber;
-
-    private String v4IDPseudonym;
-
-    public CompositeKey getCompositeKey() {
-        return compositeKey;
+    public Employee() {
     }
 
-    public void setCompositeKey(CompositeKey compositeKey) {
-        this.compositeKey = compositeKey;
+    public Employee(Integer id, String syncToken, PhysicalAddress primaryAddr) {
+        this.id = id;
+        SyncToken = syncToken;
+        PrimaryAddr = primaryAddr;
     }
 
     public Integer getId() {
@@ -112,203 +98,163 @@ public class Employee {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public String getDisplayName() {
-        return displayName;
+        return DisplayName;
     }
 
     public void setDisplayName(String displayName) {
-        this.displayName = displayName;
+        DisplayName = displayName;
     }
 
     public String getSyncToken() {
-        return syncToken;
+        return SyncToken;
     }
 
     public void setSyncToken(String syncToken) {
-        this.syncToken = syncToken;
+        SyncToken = syncToken;
     }
 
-    public Object getPrimaryAddr() {
-        return primaryAddr;
+    public PhysicalAddress getPrimaryAddr() {
+        return PrimaryAddr;
     }
 
-    public void setPrimaryAddr(Object primaryAddr) {
-        this.primaryAddr = primaryAddr;
+    public void setPrimaryAddr(PhysicalAddress primaryAddr) {
+        PrimaryAddr = primaryAddr;
     }
 
-    public Object getPrimaryEmailAddr() {
-        return primaryEmailAddr;
+    public EmailAddress getPrimaryEmailAddr() {
+        return PrimaryEmailAddr;
     }
 
-    public void setPrimaryEmailAddr(Object primaryEmailAddr) {
-        this.primaryEmailAddr = primaryEmailAddr;
+    public void setPrimaryEmailAddr(EmailAddress primaryEmailAddr) {
+        PrimaryEmailAddr = primaryEmailAddr;
     }
 
     public String getTitle() {
-        return title;
+        return Title;
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        Title = title;
     }
 
     public Boolean getBillableTime() {
-        return billableTime;
+        return BillableTime;
     }
 
     public void setBillableTime(Boolean billableTime) {
-        this.billableTime = billableTime;
+        BillableTime = billableTime;
     }
 
     public String getGivenName() {
-        return givenName;
+        return GivenName;
     }
 
     public void setGivenName(String givenName) {
-        this.givenName = givenName;
+        GivenName = givenName;
     }
 
     public Date getBirthDate() {
-        return birthDate;
+        return BirthDate;
     }
 
     public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
+        BirthDate = birthDate;
     }
 
     public Date getReleasedDate() {
-        return releasedDate;
+        return ReleasedDate;
     }
 
     public void setReleasedDate(Date releasedDate) {
-        this.releasedDate = releasedDate;
+        ReleasedDate = releasedDate;
     }
 
     public String getGender() {
-        return gender;
+        return Gender;
     }
 
     public void setGender(String gender) {
-        this.gender = gender;
+        Gender = gender;
     }
 
     public Date getHiredDate() {
-        return hiredDate;
+        return HiredDate;
     }
 
     public void setHiredDate(Date hiredDate) {
-        this.hiredDate = hiredDate;
+        HiredDate = hiredDate;
     }
 
     public String getMiddleName() {
-        return middleName;
+        return MiddleName;
     }
 
     public void setMiddleName(String middleName) {
-        this.middleName = middleName;
+        MiddleName = middleName;
     }
 
-    public String getSsn() {
-        return ssn;
+    public String getSSN() {
+        return SSN;
     }
 
-    public void setSsn(String ssn) {
-        this.ssn = ssn;
+    public void setSSN(String SSN) {
+        this.SSN = SSN;
     }
 
-    public Object getPrimaryPhone() {
-        return primaryPhone;
+    public Long getBillRate() {
+        return BillRate;
     }
 
-    public void setPrimaryPhone(Object primaryPhone) {
-        this.primaryPhone = primaryPhone;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
-    public Object getMetaData() {
-        return metaData;
-    }
-
-    public void setMetaData(Object metaData) {
-        this.metaData = metaData;
-    }
-
-    public Object getMobile() {
-        return mobile;
-    }
-
-    public void setMobile(Object mobile) {
-        this.mobile = mobile;
-    }
-
-    public double getBillRate() {
-        return billRate;
-    }
-
-    public void setBillRate(double billRate) {
-        this.billRate = billRate;
+    public void setBillRate(Long billRate) {
+        BillRate = billRate;
     }
 
     public Boolean getOrganization() {
-        return organization;
+        return Organization;
     }
 
     public void setOrganization(Boolean organization) {
-        this.organization = organization;
+        Organization = organization;
     }
 
     public String getSuffix() {
-        return suffix;
+        return Suffix;
     }
 
     public void setSuffix(String suffix) {
-        this.suffix = suffix;
+        Suffix = suffix;
     }
 
     public String getFamilyName() {
-        return familyName;
+        return FamilyName;
     }
 
     public void setFamilyName(String familyName) {
-        this.familyName = familyName;
+        FamilyName = familyName;
     }
 
     public String getPrintOnCheckName() {
-        return printOnCheckName;
+        return PrintOnCheckName;
     }
 
     public void setPrintOnCheckName(String printOnCheckName) {
-        this.printOnCheckName = printOnCheckName;
+        PrintOnCheckName = printOnCheckName;
     }
 
     public String getEmployeeNumber() {
-        return employeeNumber;
+        return EmployeeNumber;
     }
 
     public void setEmployeeNumber(String employeeNumber) {
-        this.employeeNumber = employeeNumber;
+        EmployeeNumber = employeeNumber;
     }
 
     public String getV4IDPseudonym() {
-        return v4IDPseudonym;
+        return V4IDPseudonym;
     }
 
     public void setV4IDPseudonym(String v4IDPseudonym) {
-        this.v4IDPseudonym = v4IDPseudonym;
+        V4IDPseudonym = v4IDPseudonym;
     }
 }

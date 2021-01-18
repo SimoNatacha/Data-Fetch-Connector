@@ -1,207 +1,175 @@
 package org.datafetchconnector.entities;
 
 import com.intuit.ipp.data.*;
-import org.hibernate.annotations.Type;
-
 import javax.persistence.*;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.math.BigDecimal;
 import java.util.Date;
 
-@XmlRootElement
 @Entity
 @Table(name = "invoice")
 public class Invoice {
-    @EmbeddedId
-    private CompositeKey compositeKey;
-
-    @Column(name = "id", insertable = false, updatable = false)
+    @Id
+    @Column(name = "id")
     private Integer id;
 
+    @Column(name = "TrackingNum")
+    private String TrackingNum;
 
-    @MapsId("user_id")
-    @ManyToOne()
-    private User user;
+    @Column(name = "Line")
+    private String Line;
 
-    private String trackingNum;
+    @Column(name = "SyncToken")
+    private String SyncToken;
 
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Object line;
+    @Column(name = "CustomerRef")
+    private String CustomerRef;
 
-    private String syncToken;
+    @Column(name = "CurrencyRef")
+    private String CurrencyRef;
 
+    @Column(name = "PrintStatus")
+    private String PrintStatus;
 
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Object customerRef;
+    @Column(name = "TxnDate")
+    private Date TxnDate;
 
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Object currencyRef;
+    @Column(name = "SalesTermRef")
+    private String SalesTermRef;
 
+    @Column(name = "APAccountRef")
+    private String APAccountRef;
 
-    private String printStatus;
+    @Column(name = "ClassRef")
+    private String ClassRef;
 
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Object classRef;
+    @Column(name = "LinkedTxn")
+    private LinkedTxn LinkedTxn;
 
+    @Column(name = "TxnSource")
+    private String TxnSource;
 
-    private Date txnDate;
+    @Column(name = "GlobalTaxCalculation")
+    private GlobalTaxCalculationEnum GlobalTaxCalculation;
 
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Object salesTermRef;
+    @Column(name = "TotalAmt")
+    private BigDecimal TotalAmt;
 
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Object apAccountRef;
 
+    @Column(name = "TransactionLocationType")
+    private String TransactionLocationType;
 
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Object linkedTxn;
+    @Column(name = "ShipDate")
+    private Date ShipDate;
 
+    @Column(name = "MetaData")
+    private ModificationMetaData MetaData;
 
-    private String txnSource;
+    @Column(name = "DocNumber")
+    private String DocNumber;
 
+    @Column(name = "BillEmail")
+    private EmailAddress BillEmail;
 
-    private String globalTaxCalculation;
+    @Column(name = "ShipFromAddr")
+    private PhysicalAddress  ShipFromAddr;
 
+    @Column(name = "PrivateNote")
+    private String PrivateNote;
 
-    private double totalAmt;
+    @Column(name = "TxnTaxDetail")
+    private TxnTaxDetail TxnTaxDetail;
 
+    @Column(name = "DepositToAccountRef")
+    private String DepositToAccountRef;
 
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private String transactionLocationType;
+    @Column(name = "AllowOnlineACHPayment")
+    private Boolean AllowOnlineACHPayment ;
 
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Object ShipDate;
+    @Column(name = "AllowOnlineCreditCardPayment")
+    private Boolean AllowOnlineCreditCardPayment ;
 
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Object metaData;
+    @Column(name = "DueDate")
+    private Date DueDate;
 
+    @Column(name = "BillEmailCc")
+    private EmailAddress BillEmailCc;
 
-    private String docNumber;
+    @Column(name = "EmailStatus")
+    private String EmailStatus;
 
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Object billEmail;
+    @Column(name = "CustomerMemo")
+    private MemoRef CustomerMemo;
 
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Object shipFromAddr;
+    @Column(name = "ExchangeRate")
+    private String ExchangeRate;
 
-    private String privateNote;
+    @Column(name = "Deposit")
+    private Long Deposit;
 
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Object txnTaxDetail;
+    @Column(name = "CustomField")
+    private CustomField CustomField;
 
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private String depositToAccountRef;
+    @Column(name = "ShipAddr")
+    private PhysicalAddress  ShipAddr;
 
+    @Column(name = "BillAddr")
+    private PhysicalAddress  BillAddr;
 
-    private boolean allowOnlineACHPayment;
+    @Column(name = "BillEmailBcc")
+    private EmailAddress BillEmailBcc;
 
+    @Column(name = "ShipMethodRef")
+    private String ShipMethodRef;
 
-    private boolean allowOnlineCreditCardPayment;
+    @Column(name = "ApplyTaxAfterDiscount")
+    private Boolean ApplyTaxAfterDiscount ;
 
-//    @Type(type = "json")
-//    @Column(columnDefinition = "json")
-//    private Object dueDate;
+    @Column(name = "DeliveryInfo")
+    private String DeliveryInfo;
 
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Object billEmailCc;
+    @Column(name = "DepartmentRef")
+    private String DepartmentRef;
 
+    @Column(name = "InvoiceLink")
+    private String InvoiceLink;
 
-    private String emailStatus;
+    @Column(name = "TaxExemptionRef")
+    private String TaxExemptionRef;
 
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Object customerMemo;
+    @Column(name = "HomeBalance")
+    private Long HomeBalance;
 
+    @Column(name = "HomeTotalAmt")
+    private Long HomeTotalAmt;
 
-    private String exchangeRate;
+    @Column(name = "FreeFormAddress")
+    private Boolean FreeFormAddress;
 
+    @Column(name = "AllowOnlinePayment")
+    private Boolean AllowOnlinePayment;
 
-    private double deposit;
+    @Column(name = "AllowIPNPayment")
+    private Boolean AllowIPNPayment;
 
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Object customField;
+    @Column(name = "RecurDataRef")
+    private String RecurDataRef;
 
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Object shipAddr;
+    @Column(name = "Balance")
+    private Long Balance;
 
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Object billAddr;
-
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Object billEmailBcc;
-
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Object shipMethodRef;
-
-
-    private boolean applyTaxAfterDiscount;
-
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Object deliveryInfo;
-
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Object departmentRef;
-
-
-    private String invoiceLink;
-
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Object taxExemptionRef;
-
-
-    private double homeBalance;
-
-
-    private double homeTotalAmt;
-
-
-    private boolean freeFormAddress;
-
-
-    private boolean allowOnlinePayment;
-
-
-    private boolean allowIPNPayment;
-
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Object recurDataRef;
-
-
-    private double Balance;
-
-
-    public CompositeKey getCompositeKey() {
-        return compositeKey;
+    public Invoice() {
     }
 
-    public void setCompositeKey(CompositeKey compositeKey) {
-        this.compositeKey = compositeKey;
+    public Invoice(Integer id, String line, String syncToken, String customerRef, String currencyRef, String docNumber, EmailAddress billEmail) {
+        this.id = id;
+        Line = line;
+        SyncToken = syncToken;
+        CustomerRef = customerRef;
+        CurrencyRef = currencyRef;
+        DocNumber = docNumber;
+        BillEmail = billEmail;
     }
 
     public Integer getId() {
@@ -212,396 +180,387 @@ public class Invoice {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public String getTrackingNum() {
-        return trackingNum;
+        return TrackingNum;
     }
 
     public void setTrackingNum(String trackingNum) {
-        this.trackingNum = trackingNum;
+        TrackingNum = trackingNum;
     }
 
-    public Object getLine() {
-        return line;
+    public String getLine() {
+        return Line;
     }
 
-    public void setLine(Object line) {
-        this.line = line;
+    public void setLine(String line) {
+        Line = line;
     }
 
     public String getSyncToken() {
-        return syncToken;
+        return SyncToken;
     }
 
     public void setSyncToken(String syncToken) {
-        this.syncToken = syncToken;
+        SyncToken = syncToken;
     }
 
-    public Object getCustomerRef() {
-        return customerRef;
+    public String getCustomerRef() {
+        return CustomerRef;
     }
 
-    public void setCustomerRef(Object customerRef) {
-        this.customerRef = customerRef;
+    public void setCustomerRef(String customerRef) {
+        CustomerRef = customerRef;
     }
 
-    public Object getCurrencyRef() {
-        return currencyRef;
+    public String getCurrencyRef() {
+        return CurrencyRef;
     }
 
-    public void setCurrencyRef(Object currencyRef) {
-        this.currencyRef = currencyRef;
+    public void setCurrencyRef(String currencyRef) {
+        CurrencyRef = currencyRef;
     }
 
     public String getPrintStatus() {
-        return printStatus;
+        return PrintStatus;
     }
 
     public void setPrintStatus(String printStatus) {
-        this.printStatus = printStatus;
-    }
-
-    public Object getClassRef() {
-        return classRef;
-    }
-
-    public void setClassRef(Object classRef) {
-        this.classRef = classRef;
+        PrintStatus = printStatus;
     }
 
     public Date getTxnDate() {
-        return txnDate;
+        return TxnDate;
     }
 
     public void setTxnDate(Date txnDate) {
-        this.txnDate = txnDate;
+        TxnDate = txnDate;
     }
 
-    public Object getSalesTermRef() {
-        return salesTermRef;
+    public String getSalesTermRef() {
+        return SalesTermRef;
     }
 
-    public void setSalesTermRef(Object salesTermRef) {
-        this.salesTermRef = salesTermRef;
+    public void setSalesTermRef(String salesTermRef) {
+        SalesTermRef = salesTermRef;
     }
 
-    public Object getLinkedTxn() {
-        return linkedTxn;
+    public String getAPAccountRef() {
+        return APAccountRef;
     }
 
-    public void setLinkedTxn(Object linkedTxn) {
-        this.linkedTxn = linkedTxn;
+    public void setAPAccountRef(String APAccountRef) {
+        this.APAccountRef = APAccountRef;
+    }
+
+    public String getClassRef() {
+        return ClassRef;
+    }
+
+    public void setClassRef(String classRef) {
+        ClassRef = classRef;
+    }
+
+    public com.intuit.ipp.data.LinkedTxn getLinkedTxn() {
+        return LinkedTxn;
+    }
+
+    public void setLinkedTxn(com.intuit.ipp.data.LinkedTxn linkedTxn) {
+        LinkedTxn = linkedTxn;
     }
 
     public String getTxnSource() {
-        return txnSource;
+        return TxnSource;
     }
 
     public void setTxnSource(String txnSource) {
-        this.txnSource = txnSource;
+        TxnSource = txnSource;
     }
 
-    public String getGlobalTaxCalculation() {
-        return globalTaxCalculation;
+    public GlobalTaxCalculationEnum getGlobalTaxCalculation() {
+        return GlobalTaxCalculation;
     }
 
-    public void setGlobalTaxCalculation(String globalTaxCalculation) {
-        this.globalTaxCalculation = globalTaxCalculation;
+    public void setGlobalTaxCalculation(GlobalTaxCalculationEnum globalTaxCalculation) {
+        GlobalTaxCalculation = globalTaxCalculation;
     }
 
+    public BigDecimal getTotalAmt() {
+        return TotalAmt;
+    }
+
+    public void setTotalAmt(BigDecimal totalAmt) {
+        TotalAmt = totalAmt;
+    }
 
     public String getTransactionLocationType() {
-        return transactionLocationType;
+        return TransactionLocationType;
     }
 
     public void setTransactionLocationType(String transactionLocationType) {
-        this.transactionLocationType = transactionLocationType;
+        TransactionLocationType = transactionLocationType;
     }
 
-    public Object getShipDate() {
+    public Date getShipDate() {
         return ShipDate;
     }
 
-    public void setShipDate(Object shipDate) {
+    public void setShipDate(Date shipDate) {
         ShipDate = shipDate;
     }
 
-    public Object getMetaData() {
-        return metaData;
+    public ModificationMetaData getMetaData() {
+        return MetaData;
     }
 
-    public void setMetaData(Object metaData) {
-        this.metaData = metaData;
+    public void setMetaData(ModificationMetaData metaData) {
+        MetaData = metaData;
     }
 
     public String getDocNumber() {
-        return docNumber;
+        return DocNumber;
     }
 
     public void setDocNumber(String docNumber) {
-        this.docNumber = docNumber;
+        DocNumber = docNumber;
     }
 
-    public Object getBillEmail() {
-        return billEmail;
+    public EmailAddress getBillEmail() {
+        return BillEmail;
     }
 
-    public void setBillEmail(Object billEmail) {
-        this.billEmail = billEmail;
+    public void setBillEmail(EmailAddress billEmail) {
+        BillEmail = billEmail;
     }
 
-    public Object getShipFromAddr() {
-        return shipFromAddr;
+    public PhysicalAddress getShipFromAddr() {
+        return ShipFromAddr;
     }
 
-    public void setShipFromAddr(Object shipFromAddr) {
-        this.shipFromAddr = shipFromAddr;
+    public void setShipFromAddr(PhysicalAddress shipFromAddr) {
+        ShipFromAddr = shipFromAddr;
     }
 
     public String getPrivateNote() {
-        return privateNote;
+        return PrivateNote;
     }
 
     public void setPrivateNote(String privateNote) {
-        this.privateNote = privateNote;
+        PrivateNote = privateNote;
     }
 
-    public Object getTxnTaxDetail() {
-        return txnTaxDetail;
+    public com.intuit.ipp.data.TxnTaxDetail getTxnTaxDetail() {
+        return TxnTaxDetail;
     }
 
-    public void setTxnTaxDetail(Object txnTaxDetail) {
-        this.txnTaxDetail = txnTaxDetail;
+    public void setTxnTaxDetail(com.intuit.ipp.data.TxnTaxDetail txnTaxDetail) {
+        TxnTaxDetail = txnTaxDetail;
     }
 
     public String getDepositToAccountRef() {
-        return depositToAccountRef;
+        return DepositToAccountRef;
     }
 
     public void setDepositToAccountRef(String depositToAccountRef) {
-        this.depositToAccountRef = depositToAccountRef;
+        DepositToAccountRef = depositToAccountRef;
     }
 
-    public boolean isAllowOnlineACHPayment() {
-        return allowOnlineACHPayment;
+    public Boolean getAllowOnlineACHPayment() {
+        return AllowOnlineACHPayment;
     }
 
-    public void setAllowOnlineACHPayment(boolean allowOnlineACHPayment) {
-        this.allowOnlineACHPayment = allowOnlineACHPayment;
+    public void setAllowOnlineACHPayment(Boolean allowOnlineACHPayment) {
+        AllowOnlineACHPayment = allowOnlineACHPayment;
     }
 
-    public boolean isAllowOnlineCreditCardPayment() {
-        return allowOnlineCreditCardPayment;
+    public Boolean getAllowOnlineCreditCardPayment() {
+        return AllowOnlineCreditCardPayment;
     }
 
-    public void setAllowOnlineCreditCardPayment(boolean allowOnlineCreditCardPayment) {
-        this.allowOnlineCreditCardPayment = allowOnlineCreditCardPayment;
+    public void setAllowOnlineCreditCardPayment(Boolean allowOnlineCreditCardPayment) {
+        AllowOnlineCreditCardPayment = allowOnlineCreditCardPayment;
     }
 
-//    public Object getDueDate() {
-//        return dueDate;
-//    }
-//
-//    public void setDueDate(Object dueDate) {
-//        this.dueDate = dueDate;
-//    }
-
-    public Object getBillEmailCc() {
-        return billEmailCc;
+    public Date getDueDate() {
+        return DueDate;
     }
 
-    public void setBillEmailCc(Object billEmailCc) {
-        this.billEmailCc = billEmailCc;
+    public void setDueDate(Date dueDate) {
+        DueDate = dueDate;
+    }
+
+    public EmailAddress getBillEmailCc() {
+        return BillEmailCc;
+    }
+
+    public void setBillEmailCc(EmailAddress billEmailCc) {
+        BillEmailCc = billEmailCc;
     }
 
     public String getEmailStatus() {
-        return emailStatus;
+        return EmailStatus;
     }
 
     public void setEmailStatus(String emailStatus) {
-        this.emailStatus = emailStatus;
+        EmailStatus = emailStatus;
     }
 
-    public Object getCustomerMemo() {
-        return customerMemo;
+    public MemoRef getCustomerMemo() {
+        return CustomerMemo;
     }
 
-    public void setCustomerMemo(Object customerMemo) {
-        this.customerMemo = customerMemo;
+    public void setCustomerMemo(MemoRef customerMemo) {
+        CustomerMemo = customerMemo;
     }
 
     public String getExchangeRate() {
-        return exchangeRate;
+        return ExchangeRate;
     }
 
     public void setExchangeRate(String exchangeRate) {
-        this.exchangeRate = exchangeRate;
+        ExchangeRate = exchangeRate;
     }
 
-    public double getDeposit() {
-        return deposit;
+    public Long getDeposit() {
+        return Deposit;
     }
 
-    public void setDeposit(double deposit) {
-        this.deposit = deposit;
+    public void setDeposit(Long deposit) {
+        Deposit = deposit;
     }
 
-    public Object getCustomField() {
-        return customField;
+    public com.intuit.ipp.data.CustomField getCustomField() {
+        return CustomField;
     }
 
-    public void setCustomField(Object customField) {
-        this.customField = customField;
+    public void setCustomField(com.intuit.ipp.data.CustomField customField) {
+        CustomField = customField;
     }
 
-    public Object getShipAddr() {
-        return shipAddr;
+    public PhysicalAddress getShipAddr() {
+        return ShipAddr;
     }
 
-    public void setShipAddr(Object shipAddr) {
-        this.shipAddr = shipAddr;
+    public void setShipAddr(PhysicalAddress shipAddr) {
+        ShipAddr = shipAddr;
     }
 
-    public Object getBillAddr() {
-        return billAddr;
+    public PhysicalAddress getBillAddr() {
+        return BillAddr;
     }
 
-    public void setBillAddr(Object billAddr) {
-        this.billAddr = billAddr;
+    public void setBillAddr(PhysicalAddress billAddr) {
+        BillAddr = billAddr;
     }
 
-    public Object getBillEmailBcc() {
-        return billEmailBcc;
+    public EmailAddress getBillEmailBcc() {
+        return BillEmailBcc;
     }
 
-    public void setBillEmailBcc(Object billEmailBcc) {
-        this.billEmailBcc = billEmailBcc;
+    public void setBillEmailBcc(EmailAddress billEmailBcc) {
+        BillEmailBcc = billEmailBcc;
     }
 
-    public Object getShipMethodRef() {
-        return shipMethodRef;
+    public String getShipMethodRef() {
+        return ShipMethodRef;
     }
 
-    public void setShipMethodRef(Object shipMethodRef) {
-        this.shipMethodRef = shipMethodRef;
+    public void setShipMethodRef(String shipMethodRef) {
+        ShipMethodRef = shipMethodRef;
     }
 
-    public boolean isApplyTaxAfterDiscount() {
-        return applyTaxAfterDiscount;
+    public Boolean getApplyTaxAfterDiscount() {
+        return ApplyTaxAfterDiscount;
     }
 
-    public void setApplyTaxAfterDiscount(boolean applyTaxAfterDiscount) {
-        this.applyTaxAfterDiscount = applyTaxAfterDiscount;
+    public void setApplyTaxAfterDiscount(Boolean applyTaxAfterDiscount) {
+        ApplyTaxAfterDiscount = applyTaxAfterDiscount;
     }
 
-    public Object getDeliveryInfo() {
-        return deliveryInfo;
+    public String getDeliveryInfo() {
+        return DeliveryInfo;
     }
 
-    public void setDeliveryInfo(Object deliveryInfo) {
-        this.deliveryInfo = deliveryInfo;
+    public void setDeliveryInfo(String deliveryInfo) {
+        DeliveryInfo = deliveryInfo;
     }
 
-    public Object getDepartmentRef() {
-        return departmentRef;
+    public String getDepartmentRef() {
+        return DepartmentRef;
     }
 
-    public void setDepartmentRef(Object departmentRef) {
-        this.departmentRef = departmentRef;
+    public void setDepartmentRef(String departmentRef) {
+        DepartmentRef = departmentRef;
     }
 
     public String getInvoiceLink() {
-        return invoiceLink;
+        return InvoiceLink;
     }
 
     public void setInvoiceLink(String invoiceLink) {
-        this.invoiceLink = invoiceLink;
+        InvoiceLink = invoiceLink;
     }
 
-    public Object getTaxExemptionRef() {
-        return taxExemptionRef;
+    public String getTaxExemptionRef() {
+        return TaxExemptionRef;
     }
 
-    public void setTaxExemptionRef(Object taxExemptionRef) {
-        this.taxExemptionRef = taxExemptionRef;
+    public void setTaxExemptionRef(String taxExemptionRef) {
+        TaxExemptionRef = taxExemptionRef;
     }
 
-    public double getHomeBalance() {
-        return homeBalance;
+    public Long getHomeBalance() {
+        return HomeBalance;
     }
 
-    public void setHomeBalance(double homeBalance) {
-        this.homeBalance = homeBalance;
+    public void setHomeBalance(Long homeBalance) {
+        HomeBalance = homeBalance;
     }
 
-    public double getHomeTotalAmt() {
-        return homeTotalAmt;
+    public Long getHomeTotalAmt() {
+        return HomeTotalAmt;
     }
 
-    public void setHomeTotalAmt(double homeTotalAmt) {
-        this.homeTotalAmt = homeTotalAmt;
+    public void setHomeTotalAmt(Long homeTotalAmt) {
+        HomeTotalAmt = homeTotalAmt;
     }
 
-    public boolean isFreeFormAddress() {
-        return freeFormAddress;
+    public Boolean getFreeFormAddress() {
+        return FreeFormAddress;
     }
 
-    public void setFreeFormAddress(boolean freeFormAddress) {
-        this.freeFormAddress = freeFormAddress;
+    public void setFreeFormAddress(Boolean freeFormAddress) {
+        FreeFormAddress = freeFormAddress;
     }
 
-    public boolean isAllowOnlinePayment() {
-        return allowOnlinePayment;
+    public Boolean getAllowOnlinePayment() {
+        return AllowOnlinePayment;
     }
 
-    public void setAllowOnlinePayment(boolean allowOnlinePayment) {
-        this.allowOnlinePayment = allowOnlinePayment;
+    public void setAllowOnlinePayment(Boolean allowOnlinePayment) {
+        AllowOnlinePayment = allowOnlinePayment;
     }
 
-    public boolean isAllowIPNPayment() {
-        return allowIPNPayment;
+    public Boolean getAllowIPNPayment() {
+        return AllowIPNPayment;
     }
 
-    public void setAllowIPNPayment(boolean allowIPNPayment) {
-        this.allowIPNPayment = allowIPNPayment;
+    public void setAllowIPNPayment(Boolean allowIPNPayment) {
+        AllowIPNPayment = allowIPNPayment;
     }
 
-    public Object getRecurDataRef() {
-        return recurDataRef;
+    public String getRecurDataRef() {
+        return RecurDataRef;
     }
 
-    public void setRecurDataRef(Object recurDataRef) {
-        this.recurDataRef = recurDataRef;
+    public void setRecurDataRef(String recurDataRef) {
+        RecurDataRef = recurDataRef;
     }
 
-    public double getBalance() {
+    public Long getBalance() {
         return Balance;
     }
 
-    public void setBalance(double balance) {
+    public void setBalance(Long balance) {
         Balance = balance;
-    }
-
-    public Object getApAccountRef() {
-        return apAccountRef;
-    }
-
-    public void setApAccountRef(Object apAccountRef) {
-        this.apAccountRef = apAccountRef;
-    }
-
-    public double getTotalAmt() {
-        return totalAmt;
-    }
-
-    public void setTotalAmt(double totalAmt) {
-        this.totalAmt = totalAmt;
     }
 }

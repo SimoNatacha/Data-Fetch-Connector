@@ -6,17 +6,76 @@ import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement
 @Entity
 @Table(name = "account")
-public class Account extends  BaseEntity {
-    @Column(name = "id", insertable = false, updatable = false)
+@TypeDef(name = "json", typeClass = JsonStringType.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Account {
+
+    @Id
+    @Column(name = "id")
     private Integer id;
 
-    @EmbeddedId
-    private CompositeKey compositeKey;
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "syncToken")
+    private String syncToken;
+
+    @Column(name = "acctNum")
+    private String acctNum;
+
+    @Type(type = "json")
+    @Column(name = "currencyRef", columnDefinition = "json")
+    private Object currencyRef;
+
+    @Type(type = "json")
+    @Column(name = "parentRef", columnDefinition = "json")
+    private Object parentRef;
+
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "active")
+    private boolean active;
+
+    @Type(type = "json")
+    @Column(name = "metaData", columnDefinition = "json")
+    private Object metaData;
+
+    @Column(name = "subAccount")
+    private boolean subAccount;
+
+    @Column(name = "classification")
+    private String classification;
+
+    @Column(name = "fullyQualifiedName")
+    private String fullyQualifiedName;
+
+    @Column(name = "txnLocationType")
+    private String txnLocationType;
+
+
+    @Column(name = "accountType")
+    private String accountType;
+
+    @Column(name = "currentBalanceWithSubAccounts")
+    private double currentBalanceWithSubAccounts;
+
+    @Column(name = "accountAlias")
+    private String accountAlias;
+
+    @Type(type = "json")
+    @Column(name = "taxCodeRef", columnDefinition = "json")
+    private Object taxCodeRef;
+
+
+    @Column(name = "accountSubType")
+    private String accountSubType;
+
+    @Column(name = "currentBalance")
+    private double currentBalance;
 
     public Integer getId() {
         return id;
@@ -26,59 +85,135 @@ public class Account extends  BaseEntity {
         this.id = id;
     }
 
-    public CompositeKey getCompositeKey() {
-        return compositeKey;
+    public String getName() {
+        return name;
     }
 
-    public void setCompositeKey(CompositeKey compositeKey) {
-        this.compositeKey = compositeKey;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    @MapsId("user_id")
-    @ManyToOne()
-    private User user;
-
-    private String name;
-    private String syncToken;
-    private String acctNum;
-
-    private String description;
-    private Boolean active;
-
-    private Boolean subAccount;
-    private String classification;
-    private String fullyQualifiedName;
-    private String txnLocationType;
-    private String accountType;
-    private Float currentBalanceWithSubAccounts;
-    private String accountAlias;
-    private String accountSubType;
-    private Float currentBalance;
-
-    public User getUser() {
-        return user;
+    public String getSyncToken() {
+        return syncToken;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setSyncToken(String syncToken) {
+        this.syncToken = syncToken;
     }
 
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Object currencyRef;
+    public String getAcctNum() {
+        return acctNum;
+    }
 
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Object parentRef;
+    public void setAcctNum(String acctNum) {
+        this.acctNum = acctNum;
+    }
 
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Object metaData;
+    public Object getCurrencyRef() {
+        return currencyRef;
+    }
 
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Object taxCodeRef;
+    public void setCurrencyRef(Object currencyRef) {
+        this.currencyRef = currencyRef;
+    }
+
+    public Object getParentRef() {
+        return parentRef;
+    }
+
+    public void setParentRef(Object parentRef) {
+        this.parentRef = parentRef;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public Object getMetaData() {
+        return metaData;
+    }
+
+    public void setMetaData(Object metaData) {
+        this.metaData = metaData;
+    }
+
+    public boolean isSubAccount() {
+        return subAccount;
+    }
+
+    public void setSubAccount(boolean subAccount) {
+        this.subAccount = subAccount;
+    }
+
+    public String getClassification() {
+        return classification;
+    }
+
+    public void setClassification(String classification) {
+        this.classification = classification;
+    }
+
+    public String getFullyQualifiedName() {
+        return fullyQualifiedName;
+    }
+
+    public void setFullyQualifiedName(String fullyQualifiedName) {
+        this.fullyQualifiedName = fullyQualifiedName;
+    }
+
+    public String getTxnLocationType() {
+        return txnLocationType;
+    }
+
+    public void setTxnLocationType(String txnLocationType) {
+        this.txnLocationType = txnLocationType;
+    }
 
 
 
+    public double getCurrentBalanceWithSubAccounts() {
+        return currentBalanceWithSubAccounts;
+    }
+
+    public void setCurrentBalanceWithSubAccounts(double currentBalanceWithSubAccounts) {
+        this.currentBalanceWithSubAccounts = currentBalanceWithSubAccounts;
+    }
+
+    public String getAccountAlias() {
+        return accountAlias;
+    }
+
+    public void setAccountAlias(String accountAlias) {
+        this.accountAlias = accountAlias;
+    }
+
+    public Object getTaxCodeRef() {
+        return taxCodeRef;
+    }
+
+    public void setTaxCodeRef(Object taxCodeRef) {
+        this.taxCodeRef = taxCodeRef;
+    }
+
+
+
+    public double getCurrentBalance() {
+        return currentBalance;
+    }
+
+    public void setCurrentBalance(double currentBalance) {
+        this.currentBalance = currentBalance;
+    }
 }
