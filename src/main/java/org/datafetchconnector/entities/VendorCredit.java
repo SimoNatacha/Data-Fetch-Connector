@@ -1,85 +1,93 @@
 package org.datafetchconnector.entities;
 
-import com.intuit.ipp.data.*;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import java.math.BigDecimal;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Date;
 
+@XmlRootElement
 @Entity
 @Table(name = "vendorCredit")
 public class VendorCredit {
 
-    @Id
-    @Column(name = "id")
+    @EmbeddedId
+    private CompositeKey compositeKey;
+
+    @Column(name = "id", insertable = false, updatable = false)
     private Integer id;
 
-    @Column(name = "VendorRef")
-    private String VendorRef;
+    @MapsId("user_id")
+    @ManyToOne()
+    private User user;
 
-    @Column(name = "Line")
-    private String Line;
+    @Type(type = "json")
+    @Column(columnDefinition = "json")
+    private Object vendorRef;
 
-    @Column(name = "SyncToken")
-    private String SyncToken;
+    @Type(type = "json")
+    @Column(columnDefinition = "json")
+    private Object line;
 
-    @Column(name = "CurrencyRef")
-    private String CurrencyRef;
+    private String syncToken;
 
-    @Column(name = "DocNumber")
-    private String DocNumber;
-
-    @Column(name = "PrivateNote")
-    private String PrivateNote;
-
-    @Column(name = "LinkedTxn")
-    private LinkedTxn LinkedTxn;
-
-    @Column(name = "GlobalTaxCalculation")
-    private GlobalTaxCalculationEnum GlobalTaxCalculation;
-
-    @Column(name = "ExchangeRate")
-    private Long ExchangeRate;
-
-    @Column(name = "DepartmentRef")
-    private String DepartmentRef;
-
-    @Column(name = "APAccountRef")
-    private String APAccountRef;
-
-    @Column(name = "TxnDate")
-    private Date TxnDate;
-
-    @Column(name = "TransactionLocationType")
-    private String TransactionLocationType;
-
-    @Column(name = "IncludeInAnnualTPAR")
-    private Boolean IncludeInAnnualTPAR;
-
-    @Column(name = "MetaData")
-    private ModificationMetaData MetaData;
+    @Type(type = "json")
+    @Column(columnDefinition = "json")
+    private Object currencyRef;
 
 
+    private String docNumber;
 
 
-    @Column(name = "RecurDataRef")
-    private String RecurDataRef;
+    private String privateNote;
 
-    @Column(name = "TotalAmt")
-    private BigDecimal TotalAmt;
+    @Type(type = "json")
+    @Column(columnDefinition = "json")
+    private Object linkedTxn;
+
+    private String globalTaxCalculation;
 
 
-    @Column(name = "Balance")
-    private Long Balance;
+    private String exchangeRate;
 
-    public VendorCredit(Integer id, String vendorRef, String line, String syncToken, String currencyRef) {
-        this.id = id;
-        VendorRef = vendorRef;
-        Line = line;
-        SyncToken = syncToken;
-        CurrencyRef = currencyRef;
+    @Type(type = "json")
+    @Column(columnDefinition = "json")
+    private Object departmentRef;
+
+    @Type(type = "json")
+    @Column(columnDefinition = "json")
+    private Object apAccountRef;
+
+
+    private Date txnDate;
+
+
+    private String transactionLocationType;
+
+
+    private boolean includeInAnnualTPAR;
+
+    @Type(type = "json")
+    @Column(columnDefinition = "json")
+    private Object metaData;
+
+
+    @Type(type = "json")
+    @Column(columnDefinition = "json")
+    private Object recurDataRef;
+
+
+    private double totalAmt;
+
+
+    private double balance;
+
+    public CompositeKey getCompositeKey() {
+        return compositeKey;
+    }
+
+    public void setCompositeKey(CompositeKey compositeKey) {
+        this.compositeKey = compositeKey;
     }
 
     public Integer getId() {
@@ -90,147 +98,155 @@ public class VendorCredit {
         this.id = id;
     }
 
-    public String getVendorRef() {
-        return VendorRef;
+    public User getUser() {
+        return user;
     }
 
-    public void setVendorRef(String vendorRef) {
-        VendorRef = vendorRef;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public String getLine() {
-        return Line;
+    public Object getVendorRef() {
+        return vendorRef;
     }
 
-    public void setLine(String line) {
-        Line = line;
+    public void setVendorRef(Object vendorRef) {
+        this.vendorRef = vendorRef;
+    }
+
+    public Object getLine() {
+        return line;
+    }
+
+    public void setLine(Object line) {
+        this.line = line;
     }
 
     public String getSyncToken() {
-        return SyncToken;
+        return syncToken;
     }
 
     public void setSyncToken(String syncToken) {
-        SyncToken = syncToken;
+        this.syncToken = syncToken;
     }
 
-    public String getCurrencyRef() {
-        return CurrencyRef;
+    public Object getCurrencyRef() {
+        return currencyRef;
     }
 
-    public void setCurrencyRef(String currencyRef) {
-        CurrencyRef = currencyRef;
+    public void setCurrencyRef(Object currencyRef) {
+        this.currencyRef = currencyRef;
     }
 
     public String getDocNumber() {
-        return DocNumber;
+        return docNumber;
     }
 
     public void setDocNumber(String docNumber) {
-        DocNumber = docNumber;
+        this.docNumber = docNumber;
     }
 
     public String getPrivateNote() {
-        return PrivateNote;
+        return privateNote;
     }
 
     public void setPrivateNote(String privateNote) {
-        PrivateNote = privateNote;
+        this.privateNote = privateNote;
     }
 
-    public com.intuit.ipp.data.LinkedTxn getLinkedTxn() {
-        return LinkedTxn;
+    public Object getLinkedTxn() {
+        return linkedTxn;
     }
 
-    public void setLinkedTxn(com.intuit.ipp.data.LinkedTxn linkedTxn) {
-        LinkedTxn = linkedTxn;
+    public void setLinkedTxn(Object linkedTxn) {
+        this.linkedTxn = linkedTxn;
     }
 
-    public GlobalTaxCalculationEnum getGlobalTaxCalculation() {
-        return GlobalTaxCalculation;
+    public String getGlobalTaxCalculation() {
+        return globalTaxCalculation;
     }
 
-    public void setGlobalTaxCalculation(GlobalTaxCalculationEnum globalTaxCalculation) {
-        GlobalTaxCalculation = globalTaxCalculation;
+    public void setGlobalTaxCalculation(String globalTaxCalculation) {
+        this.globalTaxCalculation = globalTaxCalculation;
     }
 
-    public Long getExchangeRate() {
-        return ExchangeRate;
+    public String getExchangeRate() {
+        return exchangeRate;
     }
 
-    public void setExchangeRate(Long exchangeRate) {
-        ExchangeRate = exchangeRate;
+    public void setExchangeRate(String exchangeRate) {
+        this.exchangeRate = exchangeRate;
     }
 
-    public String getDepartmentRef() {
-        return DepartmentRef;
+    public Object getDepartmentRef() {
+        return departmentRef;
     }
 
-    public void setDepartmentRef(String departmentRef) {
-        DepartmentRef = departmentRef;
+    public void setDepartmentRef(Object departmentRef) {
+        this.departmentRef = departmentRef;
     }
 
-    public String getAPAccountRef() {
-        return APAccountRef;
+    public Object getApAccountRef() {
+        return apAccountRef;
     }
 
-    public void setAPAccountRef(String APAccountRef) {
-        this.APAccountRef = APAccountRef;
+    public void setApAccountRef(Object apAccountRef) {
+        this.apAccountRef = apAccountRef;
     }
 
     public Date getTxnDate() {
-        return TxnDate;
+        return txnDate;
     }
 
     public void setTxnDate(Date txnDate) {
-        TxnDate = txnDate;
+        this.txnDate = txnDate;
     }
 
     public String getTransactionLocationType() {
-        return TransactionLocationType;
+        return transactionLocationType;
     }
 
     public void setTransactionLocationType(String transactionLocationType) {
-        TransactionLocationType = transactionLocationType;
+        this.transactionLocationType = transactionLocationType;
     }
 
-    public Boolean getIncludeInAnnualTPAR() {
-        return IncludeInAnnualTPAR;
+    public boolean isIncludeInAnnualTPAR() {
+        return includeInAnnualTPAR;
     }
 
-    public void setIncludeInAnnualTPAR(Boolean includeInAnnualTPAR) {
-        IncludeInAnnualTPAR = includeInAnnualTPAR;
+    public void setIncludeInAnnualTPAR(boolean includeInAnnualTPAR) {
+        this.includeInAnnualTPAR = includeInAnnualTPAR;
     }
 
-    public ModificationMetaData getMetaData() {
-        return MetaData;
+    public Object getMetaData() {
+        return metaData;
     }
 
-    public void setMetaData(ModificationMetaData metaData) {
-        MetaData = metaData;
+    public void setMetaData(Object metaData) {
+        this.metaData = metaData;
     }
 
-    public String getRecurDataRef() {
-        return RecurDataRef;
+    public Object getRecurDataRef() {
+        return recurDataRef;
     }
 
-    public void setRecurDataRef(String recurDataRef) {
-        RecurDataRef = recurDataRef;
+    public void setRecurDataRef(Object recurDataRef) {
+        this.recurDataRef = recurDataRef;
     }
 
-    public BigDecimal getTotalAmt() {
-        return TotalAmt;
+    public double getTotalAmt() {
+        return totalAmt;
     }
 
-    public void setTotalAmt(BigDecimal totalAmt) {
-        TotalAmt = totalAmt;
+    public void setTotalAmt(double totalAmt) {
+        this.totalAmt = totalAmt;
     }
 
-    public Long getBalance() {
-        return Balance;
+    public double getBalance() {
+        return balance;
     }
 
-    public void setBalance(Long balance) {
-        Balance = balance;
+    public void setBalance(double balance) {
+        this.balance = balance;
     }
 }

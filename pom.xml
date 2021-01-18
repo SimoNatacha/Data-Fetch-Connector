@@ -125,7 +125,11 @@
             <artifactId>hibernate-types-52</artifactId>
             <version>2.10.0</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+            <version>2.3.0</version>
+        </dependency>
 
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -223,6 +227,11 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
             <version>1.7.5</version>
+        </dependency>
+        <dependency>
+            <groupId>com.oneandone</groupId>
+            <artifactId>composite-jks</artifactId>
+            <version>1.0</version>
         </dependency>
     </dependencies>
 
