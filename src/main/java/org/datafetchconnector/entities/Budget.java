@@ -1,64 +1,51 @@
 package org.datafetchconnector.entities;
 
-
+import com.intuit.ipp.data.BudgetDetail;
+import com.intuit.ipp.data.BudgetEntryTypeEnum;
+import com.intuit.ipp.data.ModificationMetaData;
 import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Date;
 
-@XmlRootElement
 @Entity
 @Table(name = "budget")
 public class Budget {
 
-    @EmbeddedId
-    private CompositeKey compositeKey;
-
-    @Column(name = "id", insertable = false, updatable = false)
+    @Id
+    @Column(name = "id")
     private Integer id;
 
-
-    @MapsId("user_id")
-    @ManyToOne()
-    private User user;
-
+    @Column(name = "endDate")
     private Date endDate;
 
-
+    @Column(name = "startDate")
     private Date startDate;
 
-
+    @Column(name = "syncToken")
     private String syncToken;
 
 
+    @Column(name = "budgetEntryType")
     private String budgetEntryType;
 
-
+    @Column(name = "name")
     private String name;
 
     @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Object budgetDetail;
+    @Column(name = "budgetDetail ", columnDefinition = "json")
+    private Object budgetDetail ;
 
-
+    @Column(name = "budgetType")
     private String budgetType;
 
-
+    @Column(name = "active")
     private Boolean active;
 
     @Type(type = "json")
-    @Column(columnDefinition = "json")
+    @Column(name = "metaData", columnDefinition = "json")
     private Object metaData;
-
-
-    public CompositeKey getCompositeKey() {
-        return compositeKey;
-    }
-
-    public void setCompositeKey(CompositeKey compositeKey) {
-        this.compositeKey = compositeKey;
-    }
 
     public Integer getId() {
         return id;
@@ -66,14 +53,6 @@ public class Budget {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public Date getEndDate() {

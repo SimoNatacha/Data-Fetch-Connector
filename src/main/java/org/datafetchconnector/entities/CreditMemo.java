@@ -6,147 +6,140 @@ import org.hibernate.annotations.Type;
 import javax.persistence.*;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
-@XmlRootElement
 @Entity
 @Table(name = "creditMemo")
 public class CreditMemo {
 
-    @EmbeddedId
-    private CompositeKey compositeKey;
-
-    @Column(name = "id", insertable = false, updatable = false)
+    @Id
+    @Column(name = "id")
     private Integer id;
 
-
-    @MapsId("user_id")
-    @ManyToOne()
-    private User user;
+    @Type(type = "json")
+    @Column(name = "billEmail ", columnDefinition = "json")
+    private Object billEmail ;
 
     @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Object billEmail;
+    @Column(name = "line ", columnDefinition = "json")
+    private Object line ;
 
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Object line;
-
+    @Column(name = "syncToken")
     private String syncToken;
 
     @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Object customerRef;
+    @Column(name = "customerRef ", columnDefinition = "json")
+    private Object customerRef ;
 
     @Type(type = "json")
-    @Column(columnDefinition = "json")
+    @Column(name = "currencyRef", columnDefinition = "json")
     private Object currencyRef;
 
-
+    @Column(name = "txnDate")
     private Date txnDate;
 
     @Type(type = "json")
-    @Column(columnDefinition = "json")
+    @Column(name = "customField", columnDefinition = "json")
     private Object customField;
 
     @Type(type = "json")
-    @Column(columnDefinition = "json")
+    @Column(name = "classRef", columnDefinition = "json")
     private Object classRef;
 
+    @Column(name = "printStatus")
     private String printStatus;
 
     @Type(type = "json")
-    @Column(columnDefinition = "json")
+    @Column(name = "salesTermRef", columnDefinition = "json")
     private Object salesTermRef;
 
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Object invoiceRef;
+    @Column(name = "invoiceRef")
+    private String invoiceRef;
 
+    @Column(name = "LinkedTxn")
+    private LinkedTxn LinkedTxn;
 
-
+    @Column(name = "globalTaxCalculation")
     private String globalTaxCalculation;
 
+    @Column(name = "totalAmt")
     private double totalAmt;
 
+    @Type(type = "json")
+    @Column(name = "referenceType", columnDefinition = "json")
+    private Object referenceType;
 
+    @Column(name = "transactionLocationType")
     private String transactionLocationType;
 
 
+    @Column(name = "applyTaxAfterDiscount")
     private Boolean applyTaxAfterDiscount;
 
-
+    @Column(name = "docNumber")
     private String docNumber;
 
-
+    @Column(name = "privateNote")
     private String privateNote;
 
     @Type(type = "json")
-    @Column(columnDefinition = "json")
+    @Column(name = "customerMemo", columnDefinition = "json")
     private Object customerMemo;
 
     @Type(type = "json")
-    @Column(columnDefinition = "json")
+    @Column(name = "txnTaxDetail", columnDefinition = "json")
     private Object txnTaxDetail;
 
     @Type(type = "json")
-    @Column(columnDefinition = "json")
+    @Column(name = "paymentMethodRef", columnDefinition = "json")
     private Object paymentMethodRef;
 
-
+    @Column(name = "ExchangeRate")
     private double ExchangeRate;
 
     @Type(type = "json")
-    @Column(columnDefinition = "json")
+    @Column(name = "shipAddr", columnDefinition = "json")
     private Object shipAddr;
 
     @Type(type = "json")
-    @Column(columnDefinition = "json")
+    @Column(name = "departmentRef", columnDefinition = "json")
     private Object departmentRef;
 
     @Type(type = "json")
-    @Column(columnDefinition = "json")
+    @Column(name = "metaData", columnDefinition = "json")
     private Object metaData;
 
     @Type(type = "json")
-    @Column(columnDefinition = "json")
+    @Column(name = "billAddr", columnDefinition = "json")
     private Object billAddr;
 
+    @Column(name = "HomeBalance")
+    private double HomeBalance;
 
-    private double homeBalance;
-
-
+    @Column(name = "emailStatus")
     private String emailStatus;
 
-    private double remainingCredit;
+    @Column(name = "RemainingCredit")
+    private double RemainingCredit;
 
     @Type(type = "json")
-    @Column(columnDefinition = "json")
+    @Column(name = "recurDataRef", columnDefinition = "json")
     private Object recurDataRef;
 
 
     @Type(type = "json")
-    @Column(columnDefinition = "json")
+    @Column(name = "taxExemptionRef", columnDefinition = "json")
     private Object taxExemptionRef;
 
-
+    @Column(name = "balance")
     private double balance;
 
+    @Column(name = "homeTotalAmt")
     private double homeTotalAmt;
-
-
-    public CompositeKey getCompositeKey() {
-        return compositeKey;
-    }
-
-    public void setCompositeKey(CompositeKey compositeKey) {
-        this.compositeKey = compositeKey;
-    }
 
     public Integer getId() {
         return id;
@@ -154,14 +147,6 @@ public class CreditMemo {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public Object getBillEmail() {
@@ -244,15 +229,21 @@ public class CreditMemo {
         this.salesTermRef = salesTermRef;
     }
 
-    public Object getInvoiceRef() {
+    public String getInvoiceRef() {
         return invoiceRef;
     }
 
-    public void setInvoiceRef(Object invoiceRef) {
+    public void setInvoiceRef(String invoiceRef) {
         this.invoiceRef = invoiceRef;
     }
 
+    public com.intuit.ipp.data.LinkedTxn getLinkedTxn() {
+        return LinkedTxn;
+    }
 
+    public void setLinkedTxn(com.intuit.ipp.data.LinkedTxn linkedTxn) {
+        LinkedTxn = linkedTxn;
+    }
 
     public String getGlobalTaxCalculation() {
         return globalTaxCalculation;
@@ -268,6 +259,14 @@ public class CreditMemo {
 
     public void setTotalAmt(double totalAmt) {
         this.totalAmt = totalAmt;
+    }
+
+    public Object getReferenceType() {
+        return referenceType;
+    }
+
+    public void setReferenceType(Object referenceType) {
+        this.referenceType = referenceType;
     }
 
     public String getTransactionLocationType() {
@@ -367,11 +366,11 @@ public class CreditMemo {
     }
 
     public double getHomeBalance() {
-        return homeBalance;
+        return HomeBalance;
     }
 
     public void setHomeBalance(double homeBalance) {
-        this.homeBalance = homeBalance;
+        HomeBalance = homeBalance;
     }
 
     public String getEmailStatus() {
@@ -383,11 +382,11 @@ public class CreditMemo {
     }
 
     public double getRemainingCredit() {
-        return remainingCredit;
+        return RemainingCredit;
     }
 
     public void setRemainingCredit(double remainingCredit) {
-        this.remainingCredit = remainingCredit;
+        RemainingCredit = remainingCredit;
     }
 
     public Object getRecurDataRef() {

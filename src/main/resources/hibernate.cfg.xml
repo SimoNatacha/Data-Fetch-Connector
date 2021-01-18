@@ -6,7 +6,7 @@
 <hibernate-configuration>
     <session-factory>
         <!-- Database connection settings -->
-        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="connection.url">jdbc:mysql://localhost:3306/Data?serverTimezone=UTC</property>
         <property name="connection.username">simo</property>
         <property name="connection.password">natacha</property>
@@ -21,17 +21,15 @@
         <!-- Names the annotated entity class -->
         <mapping class="org.datafetchconnector.entities.User"/>
         <mapping class="org.datafetchconnector.entities.Account"/>
-        <mapping class="org.datafetchconnector.entities.SalesReceipts"/>
+        <mapping class="org.datafetchconnector.entities.Budget"/>
         <mapping class="org.datafetchconnector.entities.Bill"/>
         <mapping class="org.datafetchconnector.entities.CreditMemo"/>
         <mapping class="org.datafetchconnector.entities.Customer"/>
         <mapping class="org.datafetchconnector.entities.Employee"/>
         <mapping class="org.datafetchconnector.entities.Invoice"/>
         <mapping class="org.datafetchconnector.entities.Payment"/>
-        <mapping class="org.datafetchconnector.entities.Budget"/>
-        <mapping class="org.datafetchconnector.entities.VendorCredit"/>
         <mapping class="org.datafetchconnector.entities.Vendor"/>
-        <mapping class="org.datafetchconnector.entities.PaymentMethods"/>
+        <mapping class="org.datafetchconnector.entities.VendorCredit"/>
 
     </session-factory>
 </hibernate-configuration>
